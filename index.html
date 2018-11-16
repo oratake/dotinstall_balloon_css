@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Balloon Samples</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <h2>CSSで吹き出しを作る</h2>
+    <p>
+      四角は簡単に作れるが、三角にコツがいる。<br>
+      divに対してあてるCSSを記述する。<br>
+      シンプルな、箱と下向き三角のある吹き出しをつくる。
+    </p>
+
+    <h2>.ex1</h2>
+    <div class="ex1"></div>
+    <pre><code>
+.ex1 {
+  width: 100px;
+  height: 100px;
+  background: #eee;
+}
+    </code></pre>
+    <p>まず枠を表示。このあとborderを追加する。</p>
+    <h2>.ex2</h2>
+    <div class="ex2"></div>
+    <pre><code>
+.ex2 {
+  width: 100px;
+  height: 100px;
+  background: #eee;
+  border-style: solid;
+  border-width: 20px;
+  border-color: red blue pink green;
+}
+    </code></pre>
+    <p>
+      中央の空洞を消すためにwidth, heightを0にする。
+    </p>
+    <h2>.ex3</h2>
+    <div class="ex3"></div>
+    <pre><code>
+.ex3 {
+  width: 0;
+  height: 0;
+  background: #eee;
+  border-style: solid;
+  border-width: 20px;
+  border-color: red blue pink green;
+}
+    </code></pre>
+    <p>
+      すると三角が4つ集まった形ができる。<br>
+      この一つを抜き出すには他のborderの色をtransparent(透明)に指定する。</p>
+    <h2>.ex4</h2>
+    <div class="ex4"></div>
+    <pre><code>
+.ex4 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px;
+  border-color: red transparent transparent transparent;
+}
+    </code></pre>
+    <p>
+      三角形のサイズを変更する。<br>
+      例えば、三角形の頂点を左下に持っていくには、左と下のborderを削り、<br>
+      減った分右のborderを増やせばいい。
+    </p>
+    <h2>.ex5</h2>
+    <div class="ex5"></div>
+    <pre><code>
+.ex5 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 40px 0 0;
+  border-color: red transparent transparent transparent;
+}
+    </code></pre>
+    <p>また、回転させたりといったことには <code>transparent:</code> を用いる。<br>
+    例えば回転は<code>rotate(回転角度)</code>を使う。</p>
+    <h2>.ex6</h2>
+    <div class="ex6"></div>
+    <pre><code>
+.ex6 {
+  width: 0;
+  height: 0;
+  background: #eee;
+  border-style: solid;
+  border-width: 20px;
+  border-color: red blue pink green;
+  transform: rotate(30deg);
+}
+    </code></pre>
+    <p>
+      ここで、満を持して面一の吹き出しにご登場願う。<br>
+      まず<code>.balloon1-1</code>に四角を割り当て、疑似要素<code>::before</code>を使って三角を再現する。</p>
+    <h2>balloon1</h2>
+    <div class="balloon1"></div>
+    <pre><code>
+.balloon1 {
+  width: 200px;
+  height: 100px;
+  background: #aaa;
+  border-radius: 10px;
+  position: relative; /* 続く模擬要素はabsoluteで指定するので、ここをrelativeにしておく */
+}
+
+.balloon1::before {
+  position: absolute; /* 絶対位置で指定する */
+  right: 20px;
+  bottom: -20px;
+  content: '';
+  /* 模擬要素には何かしらの内容が必要。今回はないので空欄を指定 */
+  border-style: solid;
+  border-width: 10px;
+  border-color: #aaa transparent transparent transparent;
+  /* 下向きの三角以外、透明化 */
+}
+    </code></pre>
+    <p>
+      これに枠線をつけるとどうなるか、やってみる。枠に対してborderを設定。
+    </p>
+    <h2>balloon2-1</h2>
+    <div class="balloon2-1"></div>
+    <pre><code>
+/* balloon1と同じものに以下を追加 */
+
+.balloon2-1 { border: 3px solid #aaa; background: #fff; }
+    </code></pre>
+    <p>失敗した。三角が既にborderだったためである。<br>
+    解決方法としては、三角に四角枠と同じ色を重ね、borderの太さ分被せる、という方法がある。<br>
+    今度は<code>::after</code>要素として上に重ねる。
+    </p>
+    <h2>balloon2-2</h2>
+    <div class="balloon2-2"></div>
+    <pre><code>
+/* 今までと同じものに以下を追記 */
+
+.balloon2-2::after {
+  position: absolute;
+  right: 20px;
+  bottom: -17px; /* borderの3px分を被せる */
+  content: '';
+  border-style: solid;
+  border-width: 10px;
+  border-color: #fff transparent transparent transparent;
+}
+    </code></pre>
+    <p>様々なテクニックを身に着けて行く必要がある。</p>
+
+  </body>
+</html>

@@ -1,0 +1,117 @@
+/* 見栄え調整用CSS */
+body { padding: 0 10px 40px; }
+h2:not(:first-child) { font-size: 16px; }
+pre { background: #ddd; padding-left: 10px; }
+code { background: #ddd; }
+
+/* 以下使用CSS */
+.ex1 {
+  width: 100px;
+  height: 100px;
+  background: #eee;
+}
+.ex2 {
+  width: 100px;
+  height: 100px;
+  background: #eee;
+  border-style: solid;
+  border-width: 20px;
+  border-color: red blue pink green;
+}
+.ex3 {
+  width: 0;
+  height: 0;
+  background: #eee;
+  border-style: solid;
+  border-width: 20px;
+  border-color: red blue pink green;
+}
+.ex4 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px;
+  border-color: red transparent transparent transparent;
+}
+.ex5 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 40px 0 0;
+  border-color: red transparent transparent transparent;
+}
+.ex6 {
+  width: 0;
+  height: 0;
+  background: #eee;
+  border-style: solid;
+  border-width: 20px;
+  border-color: red blue pink green;
+  transform: rotate(30deg);
+}
+
+.balloon1 {
+  width: 200px;
+  height: 100px;
+  background: #aaa;
+  border-radius: 10px;
+  position: relative;
+}
+
+.balloon1::before {
+  position: absolute;
+  right: 20px;
+  bottom: -20px;
+  content: '';
+  border-style: solid;
+  border-width: 10px;
+  border-color: #aaa transparent transparent transparent;
+}
+
+
+.balloon2-1 {
+  width: 200px;
+  height: 100px;
+  border: 3px solid #aaa;
+  border-radius: 10px;
+  position: relative;
+}
+
+.balloon2-1::before {
+  position: absolute;
+  right: 20px;
+  bottom: -20px;
+  content: '';
+  border-style: solid;
+  border-width: 10px;
+  border-color: #aaa transparent transparent transparent;
+}
+
+
+.balloon2-2 {
+  width: 200px;
+  height: 100px;
+  border: 3px solid #aaa;
+  border-radius: 10px;
+  position: relative;
+}
+
+.balloon2-2::before {
+  position: absolute;
+  right: 20px;
+  bottom: -20px;
+  content: '';
+  border-style: solid;
+  border-width: 10px;
+  border-color: #aaa transparent transparent transparent;
+}
+
+.balloon2-2::after {
+  position: absolute;
+  right: 20px;
+  bottom: -17px;
+  content: '';
+  border-style: solid;
+  border-width: 10px;
+  border-color: #fff transparent transparent transparent;
+}
